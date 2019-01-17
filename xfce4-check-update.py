@@ -87,7 +87,9 @@ match = {'thunar':'xfce4-thunar',
         'xfdesktop': 'xfce4-desktop',
         'xfwm4': 'xfce4-wm',
         'orage': 'xfce4-orage',
-        'tumbler': 'xfce4-tumbler'
+        'tumbler': 'xfce4-tumbler',
+        'sion': 'xfce4-sion',
+        'squeeze': 'xfce4-squeeze'
         }
 pkgsrcse = 'http://pkgsrc.se/search.php?so='
 def get_package_version(name):
