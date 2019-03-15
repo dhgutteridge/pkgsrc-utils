@@ -127,12 +127,12 @@ def get_pkgsrc_version():
 print('package name , pkgsrc version , upstream version , needs update')
 versions = get_pkgsrc_version()
 for name,uv in versions.items():
-    lv = get_upstream_version(21, name)
+    lv = get_upstream_version(22, name)
     # extract versions, we expect two extension archives
     lv = re.sub(r'nb[0-9]+', ' ', lv).strip()
-    try : needsupdated = StrictVersion(lv) < StrictVersion(uv)
+    try : needsupdated = StrictVersion(lv) > StrictVersion(uv)
     except: needsupdated = False
-    print(name + ' , ' + lv + ' , ' + uv + ' , ' +
+    print(name + ' , ' + uv + ' , ' + lv + ' , ' +
             ('yes' if needsupdated else 'no'))
 print('Done...', file=sys.stderr)
 print('Dont forget to check mate-themes: http://pub.mate-desktop.org/releases/themes/, pkgsrc version is ' + get_package_version('mate-theme'), file=sys.stderr)
