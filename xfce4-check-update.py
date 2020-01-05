@@ -24,17 +24,17 @@ from distutils.version import StrictVersion
 #####################################################
 
 categories = ['apps/', 'panel-plugins/', 'thunar-plugins/', 'xfce/']
-base_url = 'http://archive.xfce.org/src/'
+base_url = 'https://archive.xfce.org/src/'
 
 def get_links(link):
         pars = BeautifulSoup(urllib.request.urlopen(base_url+link),
                 features='lxml')
-        link = pars.body.find('table').find_all('a', href=True)
+        link = pars.body.find_all('a', href=True)
         return link
     
 def filter_links(links):
         l = list(filter(lambda x: 
-            x['href'] not in ['/src/', '?C=N;O=D', '?C=M;O=A', '?C=S;O=A']
+            x['href'] not in ['/src/', '?C=N;O=D', '?C=M;O=A', '?C=S;O=A', '../']
             and x.text != ''
             and x.text != 'Parent Directory', links))
         l.sort(key=lambda x: x.text)
