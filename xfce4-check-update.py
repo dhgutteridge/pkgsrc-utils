@@ -15,7 +15,7 @@ import re
 import pprint
 import sys
 from bs4 import BeautifulSoup
-from distutils.version import StrictVersion
+from distutils.version import LooseVersion, StrictVersion
 
 #####################################################
 #                                                   #
@@ -60,6 +60,9 @@ def get_project_last_version(project):
         except IndexError: return # empty project
 
         files_versions = get_sublinks(last_version)
+        # StrictVersion doesn't handle version strings with four separate parts.
+        files_versions.sort(key=lambda x: LooseVersion(re.search('\-([\d\.]+)\.',
+                                                                 x.split("/")[3])[1]))
         return files_versions[-1]
 
 def get_upstream_versions():
@@ -135,7 +138,8 @@ for name,up in upstream.items():
             lv = re.sub(r'nb[0-9]+', ' ', local).strip()
             tv = up.split('/')[-1].split('-')[-1].split('.')
             uv = '.'.join(tv[:len(tv)-2])
-            try : needsupdated = StrictVersion(lv) < StrictVersion(uv)
+            # StrictVersion doesn't handle version strings with four separate parts.
+            try : needsupdated = LooseVersion(lv) < LooseVersion(uv)
             except: needsupdated = False
             print(name + ' , ' + lv + ' , ' + uv + ' , ' +
                     ('yes' if needsupdated else 'no') + ',')
