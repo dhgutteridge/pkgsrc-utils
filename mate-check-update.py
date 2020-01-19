@@ -3,7 +3,7 @@
 
 #####################################################
 #                                                   #
-# This script is used to check for mate packages to #
+# This script is used to check for MATE packages to #
 # update in pkgsrc.                                 #
 # Written by youri@NetBSD.org, Feb 17 2019          #
 #                                                   #
@@ -19,7 +19,7 @@ from distutils.version import StrictVersion
 
 #####################################################
 #                                                   #
-# Upstream Versions from the official Xfce Mirrors  #
+# Upstream Versions from the official MATE Mirrors  #
 #                                                   #
 #####################################################
 
@@ -30,7 +30,7 @@ def get_links(link):
         req = urllib.request.Request(base_url+link,
             headers={'User-Agent' : "Magic Browser"})
         pars = BeautifulSoup(urllib.request.urlopen(req), features='lxml')
-        link = pars.body.find('table').find_all('a', href=True)
+        link = pars.body.find_all('a', href=True)
         return link
     
 def get_most_recent(link, name):
