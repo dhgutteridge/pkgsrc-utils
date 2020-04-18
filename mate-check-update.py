@@ -25,6 +25,7 @@ from distutils.version import StrictVersion
 
 base_url = 'http://pub.mate-desktop.org/releases/'
 extension = '.tar.xz'
+mate_release = 24
 
 def get_links(link):
         req = urllib.request.Request(base_url+link,
@@ -39,7 +40,8 @@ def get_most_recent(link, name):
             x['href'] not in ['?C=N&O=D', '?C=S&O=D', '?C=M&O=D', '?C=N&O=D',
                 '?C=N&O=A', '?C=M&O=A', '?C=S&O=A', 'SHA1SUMS', '../'] and
             x.text.startswith(name) and
-            x.text.count('-') - 1 == name.count('-'), links))
+            x.text.count('-') - 1 == name.count('-') and not
+            x.text.endswith('.sha256sum'), links))
         l.sort(key=lambda x: x.text)
         if len(l) == 0:
             return ''
@@ -127,7 +129,7 @@ def get_pkgsrc_version():
 print('package name , pkgsrc version , upstream version , needs update')
 versions = get_pkgsrc_version()
 for name,uv in versions.items():
-    lv = get_upstream_version(22, name)
+    lv = get_upstream_version(mate_release, name)
     # extract versions, we expect two extension archives
     lv = re.sub(r'nb[0-9]+', ' ', lv).strip()
     try : needsupdated = StrictVersion(lv) > StrictVersion(uv)
