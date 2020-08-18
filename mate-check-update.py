@@ -131,10 +131,10 @@ versions = get_pkgsrc_version()
 for name,uv in versions.items():
     lv = get_upstream_version(mate_release, name)
     # extract versions, we expect two extension archives
-    lv = re.sub(r'nb[0-9]+', ' ', lv).strip()
+    uv = re.sub(r'nb[0-9]+', ' ', uv).strip()
     try : needsupdated = StrictVersion(lv) > StrictVersion(uv)
     except: needsupdated = False
     print(name + ' , ' + uv + ' , ' + lv + ' , ' +
             ('yes' if needsupdated else 'no'))
 print('Done...', file=sys.stderr)
-print('Dont forget to check mate-themes: http://pub.mate-desktop.org/releases/themes/, pkgsrc version is ' + get_package_version('mate-theme'), file=sys.stderr)
+print('Don\'t forget to check mate-themes: http://pub.mate-desktop.org/releases/themes/, pkgsrc version is ' + get_package_version('mate-theme'), file=sys.stderr)
