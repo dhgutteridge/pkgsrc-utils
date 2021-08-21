@@ -25,7 +25,7 @@ from distutils.version import StrictVersion
 
 base_url = 'http://pub.mate-desktop.org/releases/'
 extension = '.tar.xz'
-mate_release = 24
+mate_release = 26
 
 def get_links(link):
         req = urllib.request.Request(base_url+link,
