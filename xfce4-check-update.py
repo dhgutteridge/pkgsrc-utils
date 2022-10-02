@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.7
+#!/usr/bin/env python3.10
 
 
 #####################################################
@@ -87,6 +87,7 @@ match = {'thunar':'xfce4-thunar',
         'thunar-media-tags': 'xfce4-thunar-media-tags',
         'thunar-vcs-plugin': 'xfce4-thunar-vcs',
         'xfconf': 'xfce4-conf',
+        'xfdashboard': 'xfce4-dashboard',
         'xfdesktop': 'xfce4-desktop',
         'xfwm4': 'xfce4-wm',
         'orage': 'xfce4-orage',
@@ -146,3 +147,4 @@ for name,up in upstream.items():
     else:
         print(name + ' , / , / , /')
 print('Done...', file=sys.stderr)
+print('Don\'t forget to check elementary-xfce-icon-theme: https://github.com/shimmerproject/elementary-xfce, pkgsrc version is ' + get_package_version('elementary-xfce-icon-theme'), file=sys.stderr)
