@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.7
+#!/usr/bin/env python3.10
 
 
 #####################################################
@@ -68,6 +68,7 @@ packages = ["atril",
         "engrampa",
         "eom",
         "libmatekbd",
+        "libmatemixer",
         "libmateweather",
         "marco",
         "mate-applets",
