@@ -15,7 +15,7 @@ import re
 import pprint
 import sys
 from bs4 import BeautifulSoup
-from distutils.version import StrictVersion
+from packaging.version import Version
 
 #####################################################
 #                                                   #
@@ -133,7 +133,7 @@ for name,uv in versions.items():
     lv = get_upstream_version(mate_release, name)
     # extract versions, we expect two extension archives
     uv = re.sub(r'nb[0-9]+', ' ', uv).strip()
-    try : needsupdated = StrictVersion(lv) > StrictVersion(uv)
+    try : needsupdated = Version(lv) > Version(uv)
     except: needsupdated = False
     print(name + ' , ' + uv + ' , ' + lv + ' , ' +
             ('yes' if needsupdated else 'no'))
