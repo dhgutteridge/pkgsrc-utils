@@ -56,7 +56,7 @@ def get_upstream_version(v, project):
 
 #####################################################
 #                                                   #
-# Pkgsrc package versions from pkgsrc.se            #
+# Pkgsrc package versions from index.pkgsrc.pub     #
 #                                                   #
 #####################################################
 
@@ -98,9 +98,9 @@ packages = ["atril",
         "mozo",
         "pluma"]
 
-pkgsrcse = 'http://pkgsrc.se/search.php?so='
+pkgsrcidx = 'https://index.pkgsrc.pub/search.php?so='
 def get_package_version(name):
-        pars = BeautifulSoup(urllib.request.urlopen(pkgsrcse+name),
+        pars = BeautifulSoup(urllib.request.urlopen(pkgsrcidx+name),
                 features='lxml')
         # get package line
         try: link = pars.body.find('div', {'id':'main'}).find_all('em')
