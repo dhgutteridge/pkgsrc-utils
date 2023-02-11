@@ -3,7 +3,7 @@
 
 #####################################################
 #                                                   #
-# This script is used to check for xfce packages to #
+# This script is used to check for Xfce packages to #
 # update in pkgsrc.                                 #
 # Written by youri@NetBSD.org, Jan 17 2019          #
 #                                                   #
@@ -78,7 +78,7 @@ def get_upstream_versions():
 
 #####################################################
 #                                                   #
-# Pkgsrc package versions from pkgsrc.se            #
+# Pkgsrc package versions from index.pkgsrc.pub     #
 #                                                   #
 #####################################################
 
@@ -98,11 +98,11 @@ match = {'thunar':'xfce4-thunar',
         'garcon': 'xfce4-garcon',
         'exo': 'xfce4-exo'
         }
-pkgsrcse = 'http://pkgsrc.se/search.php?so='
+pkgsrcidx = 'https://index.pkgsrc.pub/search.php?so='
 def get_package_version(name):
         if name in match:
             name = match[name]
-        pars = BeautifulSoup(urllib.request.urlopen(pkgsrcse+name),
+        pars = BeautifulSoup(urllib.request.urlopen(pkgsrcidx+name),
                 features='lxml')
         # get package line
         try: link = pars.body.find('div', {'id':'main'}).find_all('em')
@@ -128,7 +128,7 @@ upstream = get_upstream_versions()
 #            'catfish': 'url/catfish-1.0.0.tar.gz',
 #            'xfce4-screenshooter': 'url/xfce4-screenshooter-10.0.tar.bz2',
 #            'orage': 'url/orage-4.tar.gz'}
-print('Checking local pkgrsc versions...', file=sys.stderr)
+print('Checking local pkgsrc versions...', file=sys.stderr)
 print('package name , pkgsrc version , upstream version , needs update')
 for name,up in upstream.items():
     if up is not None:
