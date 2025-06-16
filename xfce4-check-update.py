@@ -62,7 +62,7 @@ def get_project_last_version(project):
 
         files_versions = get_sublinks(last_version)
         # Version doesn't handle version strings with four separate parts.
-        files_versions.sort(key=lambda x: LooseVersion(re.search('\-([\d\.]+)\.',
+        files_versions.sort(key=lambda x: LooseVersion(re.search(r'-([\d\.]+)\.',
                                                                  x.split("/")[3])[1]))
         return files_versions[-1]
 
